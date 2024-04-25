@@ -2,13 +2,57 @@
 
 import {useState} from "react";
 import Checkbox from "@/app/components/customCheckbox/CustomCheckbox";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 
-export default function StepThree({changeStep}) {
+export default function StepThree({changeStep, stepOneData, stepTwoData}) {
 
-    const [agreed, setAgreed] = useState(false);
+    const [agreed, setAgreed] = useState(true);
 
-    const handleStepChange = () => {
+    const handleStepChange = async () => {
+        // EXTRACT DATA
+        const stepOneAndStepTwoData = {
+            ...stepOneData,
+            ...stepTwoData
+        }
+
+        // VALIDATE THE DATA
+        if (!agreed) {
+            toast.error('Bitte akzeptieren Sie die AGB, um fortzufahren.');
+            return;
+        }
+
+        if (
+            !stepOneAndStepTwoData.name ||
+            !stepOneAndStepTwoData.company ||
+            !stepOneAndStepTwoData.phone ||
+            !stepOneAndStepTwoData.address ||
+            !stepOneAndStepTwoData.address2 ||
+            !stepOneAndStepTwoData.email ||
+            !stepOneAndStepTwoData.email2 ||
+            !stepOneAndStepTwoData.password ||
+            !stepOneAndStepTwoData.factoryName ||
+            !stepOneAndStepTwoData.imei ||
+            !stepOneAndStepTwoData.price ||
+            !stepOneAndStepTwoData.deliveryDate ||
+            !stepOneAndStepTwoData.expectedPickupDate ||
+            !stepOneAndStepTwoData.internalNotes
+        ) {
+            toast.error('Bitte füllen Sie alle Felder aus.');
+            return;
+        }
+
+        // SEND THE DATA TO THE SERVER
+        await axios.post('/api/postData', stepOneAndStepTwoData)
+            .then(() => {
+                toast.success('Ihre Daten wurden erfolgreich gesendet.');
+            })
+            .catch(() => {
+                toast.error('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
+            });
+
+        // CHANGE STEP LOGIC
         changeStep();
     }
 
@@ -56,11 +100,13 @@ export default function StepThree({changeStep}) {
 
                 <div className={'mt-4 flex items-center gap-2'}>
                     <Checkbox
+                        isChecked={agreed}
                         onChange={() => {
                             setAgreed(!agreed);
                         }}
                     />
-                    <label className={'text-black'}>Ich habe die AGB gelesen und erkläre mich damit einverstanden.</label>
+                    <label className={'text-black'}>Ich habe die AGB gelesen und erkläre mich damit
+                        einverstanden.</label>
                 </div>
             </div>
             <button

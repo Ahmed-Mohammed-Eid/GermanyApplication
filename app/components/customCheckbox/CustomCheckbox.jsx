@@ -3,12 +3,10 @@
 import React, {useState} from 'react';
 import './Checkbox.css'; // Import CSS for styling
 
-const Checkbox = ({onChange}) => {
-    const [isChecked, setIsChecked] = useState(true); // Initial state as checked
+const Checkbox = ({onChange, isChecked}) => {
 
     const toggleCheckbox = () => {
-        setIsChecked(prevState => !prevState);
-        onChange(!isChecked);
+        onChange();
     };
 
     return (

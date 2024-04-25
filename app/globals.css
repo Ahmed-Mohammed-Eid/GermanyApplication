@@ -123,3 +123,192 @@ body {
 .Next__Button:active{
     transform: scale(0.98);
 }
+
+
+.ADD__BUTTON{
+    display: inline-block;
+    padding: 24px 32px;
+    text-decoration: none;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(30px);
+    color: rgba(0,0,0,1);
+    font-size: 14px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+}
+
+.ADD__BUTTON img{
+    pointer-events: none;
+}
+
+.ADD__BUTTON:hover{
+    background-color: rgba(255,255,255,0.5);
+}
+
+.ADD__BUTTON:active{
+    transform: scale(0.98);
+}
+
+.menu__container{
+    position: relative;
+    margin-top: 100px;
+    /*position: fixed;*/
+    /*bottom: 50px;*/
+    /*right: 50px;*/
+}
+
+.MENU__BUTTON {
+    position: absolute;
+    display: flex;
+    pointer-events: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(30px);
+    color: rgba(0, 0, 0, 1);
+    font-size: 14px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 60px;
+    height: 60px;
+    margin-left: auto;
+    transition: all 0.3s ease;
+}
+
+.MENU__BUTTON img{
+    pointer-events: none;
+}
+
+.MENU__BUTTON.btn__1,
+.MENU__BUTTON.btn__2,
+.MENU__BUTTON.btn__3 {
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.MENU__BUTTON.btn__1{
+    transition-delay: 0s;
+}
+
+.MENU__BUTTON.btn__2{
+    transition-delay: .1s;
+}
+
+.MENU__BUTTON.btn__3{
+    transition-delay: .2s;
+}
+
+.MENU__BUTTON:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.MENU__BUTTON:active {
+    transform: scale(0.98);
+}
+
+.menu__container.active .btn__1 {
+    top: 100px;
+    left: 97px;
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.menu__container.active .btn__2 {
+    top: 140px;
+    left: 18px;
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.menu__container.active .btn__3 {
+    top: 100px;
+    left: -70px;
+    opacity: 1;
+    pointer-events: initial;
+}
+
+/*REPORT*/
+
+.note{
+    height: calc(100% - 1.7rem);
+}
+
+.type__part{
+    text-align: center;
+}
+
+.name__signature{
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 2.5rem;
+    background: white;
+    border-bottom: 1px dashed black;
+}
+
+
+.license{
+    padding-bottom: 10px !important;
+}
+
+
+/*custom style for print*/
+@media print {
+
+    body {
+        background-color: #fff;
+        background-image: none;
+    }
+
+    header.header{
+        margin-bottom: 0
+    }
+
+    .Header_Info p{
+        font-size: 13px;
+    }
+
+    .input__value{
+        font-size: 13px;
+        padding: 5px 10px;
+    }
+
+    .logo__image{
+        width: 200px;
+    }
+
+    .report__container{
+        padding: 0;
+        margin: 0;
+    }
+
+    .report__header{
+        font-size: 13px;
+        margin: 0;
+    }
+
+    .report__title{
+        font-size: 10px !important;
+    }
+
+    .note{
+        height: calc(100%);
+    }
+
+    .license,
+    .license p{
+        font-size: 13px;
+        line-height: 1;
+    }
+
+}

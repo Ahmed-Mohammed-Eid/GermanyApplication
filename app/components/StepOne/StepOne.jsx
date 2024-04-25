@@ -2,6 +2,8 @@
 
 import CustomInput from "@/app/components/customInput/CustomInput";
 import {useState} from "react";
+import toast from "react-hot-toast";
+
 
 export default function StepOne({changeStep}) {
 
@@ -17,6 +19,12 @@ export default function StepOne({changeStep}) {
 
     // HANDLER TO CHANGE THE CURRENT STEP
     const handleStepChange = () => {
+        // VALIDATE THE DATA
+        if(!name || !company || !phone || !address || !address2 || !email || !email2 || !password){
+            toast.error('Bitte füllen Sie alle Felder aus.');
+            return;
+        }
+
         changeStep({
             name,
             company,

@@ -1,5 +1,8 @@
 import {Inter} from "next/font/google";
 import "./globals.css";
+import BackgroundStars from "@/app/components/BackgroundStars/BackgroundStars";
+// TOASTER
+import {Toaster} from "react-hot-toast";
 
 
 const inter = Inter({subsets: ["latin"]});
@@ -14,6 +17,11 @@ export default function RootLayout({children}) {
         <html lang="en">
         <body className={inter.className}>
         {children}
+        <BackgroundStars numStars={200}/>
+        <Toaster
+            position={"bottom-right"}
+            reverseOrder={false}
+        />
         </body>
         </html>
     );

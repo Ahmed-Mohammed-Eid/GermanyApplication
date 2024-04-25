@@ -3,6 +3,7 @@
 import CustomInput from "@/app/components/customInput/CustomInput";
 import {useState} from "react";
 import CustomTextarea from "@/app/components/customTextArea/CustomTextArea";
+import toast from "react-hot-toast";
 
 export default function StepTwo({changeStep}) {
 
@@ -11,13 +12,21 @@ export default function StepTwo({changeStep}) {
     const [imei, setImei] = useState('');
     const [deliveryDate, setDeliveryDate] = useState('');
     const [expectedPickupDate, setExpectedPickupDate] = useState('');
+    const [price, setPrice] = useState('');
     const [internalNotes, setInternalNotes] = useState('');
 
     // HANDLER TO CHANGE THE CURRENT STEP
     const handleStepChange = () => {
+        // VALIDATE THE DATA
+        if(!factoryName || !imei || !deliveryDate || !expectedPickupDate || !price || !internalNotes){
+            toast.error('Bitte füllen Sie alle Felder aus.');
+            return;
+        }
+
         changeStep({
             factoryName,
             imei,
+            price,
             deliveryDate,
             expectedPickupDate,
             internalNotes
@@ -57,6 +66,14 @@ export default function StepTwo({changeStep}) {
                             labelText={'Vorraussichtl. Abhol-Termin'}
                             onChange={(value) => {
                                 setExpectedPickupDate(value);
+                            }}
+                        />
+                    </div>
+                    <div className={'col-span-2'}>
+                        <CustomInput
+                            labelText={'Preis'}
+                            onChange={(value) => {
+                                setPrice(value);
                             }}
                         />
                     </div>
